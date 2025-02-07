@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Monitoring Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 60%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        img {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Parking Monitoring in Timișoara</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Zone</th>
+                <th>Total Cars</th>
+                <th>Monitored Cars</th>
+                <th>Unmonitored Cars</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for zone, data in zones.items() %}
+            <tr>
+                <td>{{ zone }}</td>
+                <td>{{ data.total_cars }}</td>
+                <td>{{ data.monitored }}</td>
+                <td>{{ data.total_cars - data.monitored }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Security Analysis</h2>
+    <p><strong>Monitored Cars:</strong> {{ monitored_cars }}</p>
+    <p><strong>Unmonitored Cars:</strong> {{ unmonitored_cars }}</p>
+
+    <img src="{{ url_for('static', filename='images/parking_chart.png') }}" alt="Parking Security Pie Chart">
+
+</body>
+</html>
